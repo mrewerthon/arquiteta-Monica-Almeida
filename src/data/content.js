@@ -23,8 +23,6 @@ export const siteConfig = {
   instagramHandle: "@monicaalmeidaarquitetura",
   instagramUrl: "https://www.instagram.com/monicaalmeidaarquitetura/",
 
-  // Aviso legal para protótipo
-  demonstrativeNotice: "Projeto demonstrativo desenvolvido para apresentação.",
   currentYear: new Date().getFullYear(),
 };
 
@@ -50,11 +48,12 @@ export const aboutContent = {
   tagline: "Sobre",
   title: "Arquitetura que traduz histórias",
   paragraphs: [
-    "Sou arquiteta e light designer com mais de 15 anos de experiência, apaixonada por transformar espaços por meio da luz, da estética e da funcionalidade.",
-    "Após quatro anos vivendo no Rio de Janeiro, mergulhada em projetos e experiências que ampliaram minha visão criativa, estou de volta a Belém, minha cidade natal e onde tudo começou.",
-    "Trago comigo uma trajetória profissional sensível, um olhar atento aos detalhes e o desejo de criar ambientes que acolham, expressem identidade e façam sentido para quem os vive."
+    "Sou arquiteta e light designer com mais de 15 anos de experiência, dedicada a unir luz, estética e funcionalidade em cada projeto.",
+    "Após quatro anos no Rio de Janeiro ampliando minha visão criativa, estou de volta a Belém, minha cidade natal, com um olhar atento e sensível aos detalhes.",
+    "Desenvolvo ambientes acolhedores e autênticos, criados para expressar identidade e fazer sentido para quem os vive."
   ],
-  signature: "Monica Almeida — Arquiteta e Light Designer",
+  signatureName: "Monica Almeida",
+  signatureRole: "Arquiteta e Light Designer",
   architecturalDetailImage: "/images/about-detail.jpg",
   architecturalDetailAlt: "Composição arquitetônica com marcenaria ripada, iluminação linear e pedra natural",
 };
@@ -98,8 +97,7 @@ export const portfolioCategories = [
 export const portfolioContent = {
   tagline: "Portfólio",
   title: "Possibilidades para cada espaço",
-  subtitle: "Uma seleção visual criada para esta apresentação.",
-  discreetNotice: "Imagens ilustrativas utilizadas neste projeto demonstrativo.",
+  subtitle: "Projetos autorais pensados com equilíbrio entre iluminação, marcenaria e materialidade.",
 };
 
 export const portfolioProjects = [
@@ -197,7 +195,7 @@ export const portfolioProjects = [
 
 export const conceptContent = {
   quote: "Cada espaço pode acolher, inspirar e contar uma história.",
-  description: "A arquitetura nasce da escuta. Cada escolha — da distribuição dos ambientes à iluminação — é pensada para unir personalidade, conforto e funcionalidade.",
+  description: "A arquitetura nasce da escuta. Cada escolha, da distribuição dos ambientes à iluminação, é pensada para unir personalidade, conforto e funcionalidade.",
   ctaText: "Conversar sobre seu projeto",
   bgImage: "/images/project-living.jpg",
 };

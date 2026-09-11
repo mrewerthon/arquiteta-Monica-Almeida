@@ -1,12 +1,29 @@
-import React, { useRef } from 'react';
+import React, { useRef, useSyncExternalStore } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { Eye, ArrowUpRight } from 'lucide-react';
+import { BlurFade } from '../magicui/BlurFade';
 import './ParallaxScroll.css';
 
+function subscribeDesktop(callback) {
+  if (typeof window === 'undefined') return () => {};
+  const mediaQuery = window.matchMedia('(min-width: 768px)');
+  mediaQuery.addEventListener('change', callback);
+  return () => mediaQuery.removeEventListener('change', callback);
+}
+
+function getDesktopSnapshot() {
+  if (typeof window === 'undefined') return true;
+  return window.matchMedia('(min-width: 768px)').matches;
+}
+
+function getDesktopServerSnapshot() {
+  return true;
+}
+
 /**
- * ParallaxScroll - Adaptado do Aceternity UI
- * Distribui projetos em colunas com deslocamentos de parallax suaves
- * baseados no scroll da página e integrados à identidade visual da arquiteta.
+ * ParallaxScroll - Adaptado do Aceternity UI com Blur Fade no Mobile
+ * - No Desktop (>= 768px): Colunas com efeito Parallax contínuo.
+ * - No Mobile (< 768px): Parallax desativado; alinhamento natural com Blur Fade individual.
+ * - Design simplificado e editorial com foco protagonista nas fotografias.
  */
 export function ParallaxScroll({
   projects = [],
@@ -14,6 +31,7 @@ export function ParallaxScroll({
   className = '',
 }) {
   const containerRef = useRef(null);
+  const isDesktop = useSyncExternalStore(subscribeDesktop, getDesktopSnapshot, getDesktopServerSnapshot);
 
   // Monitora o progresso do scroll do elemento na viewport
   const { scrollYProgress } = useScroll({
@@ -21,14 +39,14 @@ export function ParallaxScroll({
     offset: ['start end', 'end start'],
   });
 
-  // Configuração de física suave (spring) para rolagem fluida e editorial
+  // Física suave para rolagem editorial no desktop
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 70,
     damping: 24,
     restDelta: 0.001,
   });
 
-  // Transformações verticais distintas para cada coluna (Desktop)
+  // Transformações verticais para cada coluna no desktop
   const translateYFirst = useTransform(smoothProgress, [0, 1], [-30, 45]);
   const translateYSecond = useTransform(smoothProgress, [0, 1], [40, -45]);
   const translateYThird = useTransform(smoothProgress, [0, 1], [-20, 35]);
@@ -40,7 +58,7 @@ export function ParallaxScroll({
   const thirdPart = projects.slice(2 * third);
 
   const renderCard = (project, globalIndex) => {
-    return (
+    const cardElement = (
       <article
         key={project.id || globalIndex}
         className="parallax-project-card"
@@ -69,11 +87,7 @@ export function ParallaxScroll({
             loading="lazy"
           />
           <div className="parallax-card__overlay">
-            <div className="parallax-card__action-badge">
-              <Eye size={16} />
-              <span>Ampliar</span>
-              <ArrowUpRight size={14} className="parallax-card__arrow" />
-            </div>
+            <span className="parallax-card__overlay-hint">Ampliar imagem</span>
           </div>
         </div>
 
@@ -90,45 +104,63 @@ export function ParallaxScroll({
         </div>
       </article>
     );
+
+    // No mobile, aplica BlurFade suave individual aos cards
+    if (!isDesktop) {
+      return (
+        <BlurFade
+          key={project.id || globalIndex}
+          inView={true}
+          blur="4px"
+          duration={0.45}
+          delay={0.06}
+          offset={10}
+        >
+          {cardElement}
+        </BlurFade>
+      );
+    }
+
+    return cardElement;
   };
 
   return (
     <div
       ref={containerRef}
-      className={`parallax-scroll-container ${className}`}
+      className={`parallax-scroll-container ${isDesktop ? 'is-desktop' : 'is-mobile'} ${className}`}
     >
-      {/* 3 Colunas com velocidades de parallax distintas */}
-      <div className="parallax-scroll-grid">
-        {/* Coluna 1 */}
-        <motion.div
-          style={{ y: translateYFirst }}
-          className="parallax-scroll-column parallax-col-1"
-        >
-          {firstPart.map((project, idx) =>
-            renderCard(project, idx)
-          )}
-        </motion.div>
+      {isDesktop ? (
+        /* Modo Desktop: 3 Colunas com velocidades de parallax distintas */
+        <div className="parallax-scroll-grid">
+          <motion.div
+            style={{ y: translateYFirst }}
+            className="parallax-scroll-column parallax-col-1"
+          >
+            {firstPart.map((project, idx) => renderCard(project, idx))}
+          </motion.div>
 
-        {/* Coluna 2 */}
-        <motion.div
-          style={{ y: translateYSecond }}
-          className="parallax-scroll-column parallax-col-2"
-        >
-          {secondPart.map((project, idx) =>
-            renderCard(project, third + idx)
-          )}
-        </motion.div>
+          <motion.div
+            style={{ y: translateYSecond }}
+            className="parallax-scroll-column parallax-col-2"
+          >
+            {secondPart.map((project, idx) => renderCard(project, third + idx))}
+          </motion.div>
 
-        {/* Coluna 3 */}
-        <motion.div
-          style={{ y: translateYThird }}
-          className="parallax-scroll-column parallax-col-3"
-        >
-          {thirdPart.map((project, idx) =>
-            renderCard(project, 2 * third + idx)
-          )}
-        </motion.div>
-      </div>
+          <motion.div
+            style={{ y: translateYThird }}
+            className="parallax-scroll-column parallax-col-3"
+          >
+            {thirdPart.map((project, idx) =>
+              renderCard(project, 2 * third + idx)
+            )}
+          </motion.div>
+        </div>
+      ) : (
+        /* Modo Mobile: Lista vertical perfeitamente alinhada e fluida sem translateY */
+        <div className="parallax-mobile-grid">
+          {projects.map((project, idx) => renderCard(project, idx))}
+        </div>
+      )}
     </div>
   );
 }

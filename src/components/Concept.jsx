@@ -1,5 +1,6 @@
 import React from 'react';
 import { conceptContent, siteConfig } from '../data/content';
+import { BlurFade } from './magicui/BlurFade';
 import { MessageCircle } from 'lucide-react';
 import './Concept.css';
 
@@ -10,7 +11,7 @@ export default function Concept() {
       <div className="concept__overlay"></div>
 
       <div className="container concept__container">
-        <div className="concept__card">
+        <BlurFade inView blur="4px" duration={0.5} delay={0.05} className="concept__card">
           <blockquote className="concept__quote">
             “{conceptContent.quote}”
           </blockquote>
@@ -24,15 +25,16 @@ export default function Concept() {
               href={siteConfig.whatsappUrl} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="btn btn-whatsapp concept__cta-btn"
+              className="btn btn-primary concept__cta-btn"
               aria-label="Converse sobre seu projeto com Monica Almeida"
             >
               <MessageCircle size={18} />
               <span>{conceptContent.ctaText}</span>
             </a>
           </div>
-        </div>
+        </BlurFade>
       </div>
     </section>
   );
 }
+

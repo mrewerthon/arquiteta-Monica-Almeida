@@ -45,7 +45,7 @@ export default function Hero() {
               href={siteConfig.whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn btn-whatsapp hero__cta-whatsapp"
+              className="btn btn-primary hero__cta-primary"
               aria-label="Converse com Monica Almeida pelo WhatsApp"
             >
               <MessageCircle size={18} />

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { portfolioCategories, portfolioProjects, portfolioContent, siteConfig } from '../data/content';
 import ParallaxScroll from './ui/ParallaxScroll';
 import Lightbox from './Lightbox';
+import { BlurFade } from './magicui/BlurFade';
 import { MessageCircle, Sparkles } from 'lucide-react';
 import './Portfolio.css';
 
@@ -41,16 +42,16 @@ export default function Portfolio() {
     <section id="projetos" className="section portfolio">
       <div className="container">
         {/* Section Header */}
-        <div className="portfolio__header">
+        <BlurFade inView blur="4px" duration={0.5} delay={0.05} className="portfolio__header">
           <span className="section-tagline">{portfolioContent.tagline}</span>
           <h2 className="section-title portfolio__title">{portfolioContent.title}</h2>
           <p className="portfolio__subtitle">
             {portfolioContent.subtitle}
           </p>
-        </div>
+        </BlurFade>
 
         {/* Filter Categories */}
-        <div className="portfolio__filters" role="tablist" aria-label="Filtro de categorias de projetos">
+        <BlurFade inView blur="4px" duration={0.45} delay={0.12} className="portfolio__filters" role="tablist" aria-label="Filtro de categorias de projetos">
           {portfolioCategories.map((cat) => (
             <button
               key={cat.id}
@@ -62,7 +63,7 @@ export default function Portfolio() {
               {cat.label}
             </button>
           ))}
-        </div>
+        </BlurFade>
 
         {/* Parallax Scroll Gallery */}
         {filteredProjects.length > 0 ? (
@@ -87,11 +88,6 @@ export default function Portfolio() {
             </a>
           </div>
         )}
-
-        {/* Discreet Notice */}
-        <div className="portfolio__discreet-notice">
-          <p>{portfolioContent.discreetNotice}</p>
-        </div>
 
         {/* Dynamic Lightbox Modal */}
         {selectedProjectIndex !== null && (

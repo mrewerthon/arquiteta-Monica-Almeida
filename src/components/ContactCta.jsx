@@ -1,5 +1,6 @@
 import React from 'react';
 import { finalCtaContent, siteConfig } from '../data/content';
+import { BlurFade } from './magicui/BlurFade';
 import { MessageCircle } from 'lucide-react';
 import './ContactCta.css';
 
@@ -26,7 +27,7 @@ export default function ContactCta() {
   return (
     <section id="contato" className="contact-cta">
       <div className="container contact-cta__container">
-        <div className="contact-cta__card">
+        <BlurFade inView blur="4px" duration={0.5} delay={0.05} className="contact-cta__card">
           <h2 className="contact-cta__title">{finalCtaContent.title}</h2>
           <p className="contact-cta__description">{finalCtaContent.description}</p>
 
@@ -35,7 +36,7 @@ export default function ContactCta() {
               href={siteConfig.whatsappUrl} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="btn btn-whatsapp contact-cta__main-btn"
+              className="btn btn-primary contact-cta__main-btn"
               aria-label="Falar com Monica Almeida no WhatsApp"
             >
               <MessageCircle size={20} />
@@ -43,7 +44,7 @@ export default function ContactCta() {
             </a>
 
             <a 
-              href={siteConfig.instagramUrl}
+              href={siteConfig.instagramUrl} 
               target="_blank" 
               rel="noopener noreferrer"
               className="btn btn-secondary contact-cta__insta-btn"
@@ -59,8 +60,9 @@ export default function ContactCta() {
             <span className="contact-cta__bullet">•</span>
             <span>{siteConfig.phoneDisplay}</span>
           </div>
-        </div>
+        </BlurFade>
       </div>
     </section>
   );
 }
+

@@ -23,15 +23,18 @@
   color: var(--text-secondary);
 }
 
-/* Category Filters */
+/* Category Filters - Natural Horizontal Carousel on Mobile */
 .portfolio__filters {
   display: flex;
   align-items: center;
   justify-content: flex-start;
   gap: 10px;
-  margin-bottom: 40px;
+  margin-bottom: 36px;
   overflow-x: auto;
-  padding-bottom: 12px;
+  overflow-y: hidden;
+  padding: 4px 20px 12px;
+  margin-left: -20px;
+  margin-right: -20px;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
 }
@@ -45,12 +48,20 @@
     justify-content: center;
     flex-wrap: wrap;
     overflow-x: visible;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 0 8px;
     margin-bottom: 48px;
   }
 }
 
 .portfolio__filter-btn {
-  padding: 9px 20px;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0 20px;
   font-family: var(--font-sans);
   font-size: 0.8125rem;
   font-weight: 500;
@@ -110,16 +121,4 @@
 
 .portfolio__empty-cta {
   display: inline-flex;
-}
-
-/* Discreet Notice below gallery */
-.portfolio__discreet-notice {
-  margin-top: 36px;
-  text-align: center;
-}
-
-.portfolio__discreet-notice p {
-  font-size: 0.8125rem;
-  color: var(--text-muted);
-  letter-spacing: 0.02em;
 }

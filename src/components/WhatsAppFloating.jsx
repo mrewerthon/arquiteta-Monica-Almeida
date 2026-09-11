@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { siteConfig } from '../data/content';
-import { MessageCircle, ArrowUpRight } from 'lucide-react';
+import { MessageCircle } from 'lucide-react';
 import './WhatsAppFloating.css';
 
 export default function WhatsAppFloating() {
@@ -8,8 +8,8 @@ export default function WhatsAppFloating() {
 
   useEffect(() => {
     const handleScroll = () => {
-      // Show floating button after user scrolls past 150px
-      if (window.scrollY > 150) {
+      // Exibe o atalho flutuante de forma discreta após rolagem
+      if (window.scrollY > 220) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -21,47 +21,22 @@ export default function WhatsAppFloating() {
   }, []);
 
   return (
-    <>
-      {/* Desktop Floating Button */}
-      <aside 
-        className={`wa-floating-desktop ${isVisible ? 'wa-floating-desktop--visible' : ''}`}
-        aria-label="Atendimento rápido via WhatsApp"
+    <aside 
+      className={`wa-floating ${isVisible ? 'wa-floating--visible' : ''}`}
+      aria-label="Atalho para contato no WhatsApp"
+    >
+      <a
+        href={siteConfig.whatsappUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="wa-floating__btn"
+        aria-label="Falar com a arquiteta Monica Almeida no WhatsApp"
       >
-        <a
-          href={siteConfig.whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="wa-floating-btn"
-          aria-label="Iniciar conversa com a arquiteta Monica Almeida no WhatsApp"
-        >
-          <div className="wa-floating-badge">
-            <span className="wa-floating-badge-text">Falar com a arquiteta</span>
-            <ArrowUpRight size={14} />
-          </div>
-          <div className="wa-floating-icon-wrap">
-            <MessageCircle size={28} className="wa-floating-icon" />
-            <span className="wa-pulse"></span>
-          </div>
-        </a>
-      </aside>
-
-      {/* Mobile Fixed Action Bar */}
-      <aside 
-        className={`wa-mobile-bar ${isVisible ? 'wa-mobile-bar--visible' : ''}`}
-        aria-label="Barra de contato rápido via WhatsApp"
-      >
-        <a
-          href={siteConfig.whatsappUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="wa-mobile-link"
-          aria-label="Conversar pelo WhatsApp com Monica Almeida"
-        >
-          <MessageCircle size={20} className="wa-mobile-icon" />
-          <span className="wa-mobile-text">Conversar pelo WhatsApp</span>
-          <ArrowUpRight size={16} />
-        </a>
-      </aside>
-    </>
+        <div className="wa-floating__icon-wrap">
+          <MessageCircle size={20} className="wa-floating__icon" />
+        </div>
+        <span className="wa-floating__text">Falar com Monica</span>
+      </a>
+    </aside>
   );
 }

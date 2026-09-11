@@ -1,5 +1,6 @@
 import React from 'react';
 import { servicesContent, siteConfig } from '../data/content';
+import { BlurFade } from './magicui/BlurFade';
 import { MessageCircle } from 'lucide-react';
 import './Services.css';
 
@@ -8,15 +9,22 @@ export default function Services() {
     <section id="servicos" className="section services">
       <div className="container">
         {/* Section Header */}
-        <div className="services__header">
+        <BlurFade inView blur="4px" duration={0.5} delay={0.05} className="services__header">
           <span className="section-tagline">{servicesContent.tagline}</span>
           <h2 className="section-title services__title">{servicesContent.title}</h2>
-        </div>
+        </BlurFade>
 
         {/* 3 Pillars Grid */}
         <div className="services__grid">
-          {servicesContent.items.map((item) => (
-            <div key={item.id} className="service-card">
+          {servicesContent.items.map((item, idx) => (
+            <BlurFade 
+              key={item.id} 
+              inView 
+              blur="4px" 
+              duration={0.45} 
+              delay={0.08 + idx * 0.08}
+              className="service-card"
+            >
               <div className="service-card__image-container">
                 <img 
                   src={item.image} 
@@ -29,12 +37,12 @@ export default function Services() {
                 <h3 className="service-card__title">{item.title}</h3>
                 <p className="service-card__description">{item.description}</p>
               </div>
-            </div>
+            </BlurFade>
           ))}
         </div>
 
         {/* Mid-page Conversion Banner */}
-        <div className="services__cta-banner">
+        <BlurFade inView blur="4px" duration={0.5} delay={0.2} className="services__cta-banner">
           <div className="services__cta-text">
             <h3 className="services__cta-heading">{servicesContent.ctaHeading}</h3>
             <p className="services__cta-sub">Converse diretamente com a arquiteta sobre suas ideias e necessidades.</p>
@@ -43,14 +51,15 @@ export default function Services() {
             href={siteConfig.whatsappUrl} 
             target="_blank" 
             rel="noopener noreferrer"
-            className="btn btn-whatsapp services__cta-btn"
+            className="btn btn-primary services__cta-btn"
             aria-label="Converse sobre seu projeto no WhatsApp"
           >
             <MessageCircle size={18} />
             <span>{servicesContent.ctaButtonText}</span>
           </a>
-        </div>
+        </BlurFade>
       </div>
     </section>
   );
 }
+

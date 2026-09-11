@@ -115,7 +115,7 @@ export default function Header() {
               href={siteConfig.whatsappUrl} 
               target="_blank" 
               rel="noopener noreferrer"
-              className="btn btn-whatsapp header__drawer-whatsapp-btn"
+              className="btn btn-primary header__drawer-whatsapp-btn"
               onClick={() => setMobileMenuOpen(false)}
             >
               <MessageCircle size={18} />

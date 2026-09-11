@@ -118,14 +118,10 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Bottom Footer with Demonstrative Notice */}
+        {/* Bottom Footer */}
         <div className="footer__bottom">
           <p className="footer__copy">
             © {siteConfig.currentYear} {siteConfig.fullName}. Todos os direitos reservados.
-          </p>
-
-          <p className="footer__notice">
-            {siteConfig.demonstrativeNotice}
           </p>
         </div>
       </div>
