@@ -1,0 +1,148 @@
+/* WhatsApp Floating & Mobile Bar Styles */
+
+/* Desktop Floating Action */
+.wa-floating-desktop {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  z-index: 990;
+  display: none;
+  opacity: 0;
+  transform: translateY(20px) scale(0.9);
+  transition: opacity 0.35s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+}
+
+@media (min-width: 768px) {
+  .wa-floating-desktop {
+    display: block;
+  }
+}
+
+.wa-floating-desktop--visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+.wa-floating-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
+
+.wa-floating-badge {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  opacity: 0;
+  transform: translateX(10px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.wa-floating-btn:hover .wa-floating-badge {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.wa-floating-icon-wrap {
+  position: relative;
+  width: 58px;
+  height: 58px;
+  background-color: #25D366;
+  color: #FFFFFF;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4);
+  transition: transform 0.25s ease, background-color 0.2s ease;
+}
+
+.wa-floating-btn:hover .wa-floating-icon-wrap {
+  transform: scale(1.08);
+  background-color: #20BA5A;
+}
+
+.wa-pulse {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background-color: #25D366;
+  opacity: 0.5;
+  animation: waPulse 2s infinite cubic-bezier(0.25, 0, 0, 1);
+  z-index: -1;
+}
+
+@keyframes waPulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* Mobile Fixed Action Bar */
+.wa-mobile-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 990;
+  padding: 12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+  background-color: rgba(250, 248, 245, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--border-light);
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+  display: block;
+  transform: translateY(100%);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (min-width: 768px) {
+  .wa-mobile-bar {
+    display: none;
+  }
+}
+
+.wa-mobile-bar--visible {
+  transform: translateY(0);
+}
+
+.wa-mobile-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: #25D366;
+  color: #FFFFFF;
+  padding: 14px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.35);
+  width: 100%;
+}
+
+.wa-mobile-link:active {
+  background-color: #20BA5A;
+}

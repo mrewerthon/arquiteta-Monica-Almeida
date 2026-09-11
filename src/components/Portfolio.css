@@ -1,0 +1,125 @@
+/* ==========================================================================
+   PORTFOLIO SECTION STYLES
+   Monica Almeida Arquitetura & Light Design
+   ========================================================================== */
+
+.portfolio {
+  background-color: var(--bg-primary);
+  overflow: hidden;
+}
+
+.portfolio__header {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 36px;
+}
+
+.portfolio__title {
+  margin-bottom: 12px;
+}
+
+.portfolio__subtitle {
+  font-size: 1.0625rem;
+  color: var(--text-secondary);
+}
+
+/* Category Filters */
+.portfolio__filters {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  margin-bottom: 40px;
+  overflow-x: auto;
+  padding-bottom: 12px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.portfolio__filters::-webkit-scrollbar {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .portfolio__filters {
+    justify-content: center;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    margin-bottom: 48px;
+  }
+}
+
+.portfolio__filter-btn {
+  padding: 9px 20px;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-full);
+  background-color: var(--bg-card);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-light);
+  white-space: nowrap;
+  transition: all 0.25s ease;
+  box-shadow: 0 1px 3px rgba(28, 25, 23, 0.03);
+}
+
+.portfolio__filter-btn:hover {
+  border-color: var(--text-primary);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.portfolio__filter-btn--active {
+  background-color: var(--text-primary);
+  color: #FFFFFF;
+  border-color: var(--text-primary);
+  box-shadow: 0 4px 12px rgba(28, 25, 23, 0.15);
+}
+
+.portfolio__filter-btn--active:hover {
+  background-color: var(--text-primary);
+  color: #FFFFFF;
+}
+
+/* Empty State */
+.portfolio__empty {
+  text-align: center;
+  padding: 60px 24px;
+  background-color: var(--bg-secondary);
+  border-radius: var(--radius-md);
+  border: 1px dashed var(--border-medium);
+  margin: 20px 0;
+}
+
+.portfolio__empty-icon {
+  color: var(--accent-gold);
+  margin-bottom: 16px;
+}
+
+.portfolio__empty h3 {
+  font-size: 1.5rem;
+  margin-bottom: 8px;
+}
+
+.portfolio__empty p {
+  color: var(--text-secondary);
+  max-width: 480px;
+  margin: 0 auto 24px;
+}
+
+.portfolio__empty-cta {
+  display: inline-flex;
+}
+
+/* Discreet Notice below gallery */
+.portfolio__discreet-notice {
+  margin-top: 36px;
+  text-align: center;
+}
+
+.portfolio__discreet-notice p {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+}

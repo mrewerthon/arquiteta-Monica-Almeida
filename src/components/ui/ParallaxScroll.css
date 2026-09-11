@@ -1,0 +1,220 @@
+/* ==========================================================================
+   PARALLAX SCROLL COMPONENT (ACETERNITY UI ADAPTATION)
+   Estética Editorial e Sofisticada para Monica Almeida Arquitetura
+   ========================================================================== */
+
+.parallax-scroll-container {
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+  padding: 10px 0 30px;
+}
+
+/* Grid de colunas */
+.parallax-scroll-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .parallax-scroll-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+
+  /* No tablet com 2 colunas, distribui a terceira coluna de forma equilibrada */
+  .parallax-col-3 {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .parallax-scroll-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+  }
+
+  .parallax-col-3 {
+    grid-column: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+  }
+}
+
+/* Colunas individuais */
+.parallax-scroll-column {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  will-change: transform;
+}
+
+@media (min-width: 1024px) {
+  .parallax-scroll-column {
+    gap: 36px;
+  }
+}
+
+/* Card de Projeto Parallax */
+.parallax-project-card {
+  position: relative;
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.parallax-project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px -8px rgba(28, 25, 23, 0.12);
+  border-color: rgba(184, 93, 56, 0.35);
+}
+
+.parallax-project-card:focus-visible {
+  outline: 2px solid var(--accent-terracotta);
+  outline-offset: 3px;
+}
+
+/* Container de Imagem */
+.parallax-card__image-container {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background-color: var(--bg-dark);
+}
+
+.parallax-col-1 .parallax-project-card:first-child .parallax-card__image-container,
+.parallax-col-2 .parallax-project-card:last-child .parallax-card__image-container {
+  aspect-ratio: 16 / 11;
+}
+
+.parallax-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.parallax-project-card:hover .parallax-card__image {
+  transform: scale(1.04);
+}
+
+/* Overlay sutil */
+.parallax-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(20, 18, 16, 0.1) 0%,
+    rgba(20, 18, 16, 0.45) 100%
+  );
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.35s ease;
+}
+
+.parallax-project-card:hover .parallax-card__overlay {
+  opacity: 1;
+}
+
+/* Badge de Ação */
+.parallax-card__action-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 16px;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--text-primary);
+  border-radius: var(--radius-full);
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  transform: translateY(10px);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.parallax-project-card:hover .parallax-card__action-badge {
+  transform: translateY(0);
+}
+
+.parallax-card__arrow {
+  color: var(--accent-terracotta);
+  transition: transform 0.25s ease;
+}
+
+.parallax-project-card:hover .parallax-card__arrow {
+  transform: translate(2px, -2px);
+}
+
+/* Corpo do Card */
+.parallax-card__body {
+  padding: 24px 22px 26px;
+  background-color: var(--bg-card);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.parallax-card__category {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-terracotta);
+  margin-bottom: 8px;
+}
+
+.parallax-card__title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  line-height: 1.25;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+.parallax-card__description {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+/* Redução de movimento */
+@media (prefers-reduced-motion: reduce) {
+  .parallax-scroll-column {
+    transform: none !important;
+  }
+
+  .parallax-project-card:hover {
+    transform: none;
+  }
+
+  .parallax-card__image {
+    transition: none;
+  }
+}

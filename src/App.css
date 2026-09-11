@@ -1,0 +1,19 @@
+/* App Layout Global Wrapper */
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: var(--bg-primary);
+}
+
+main {
+  flex-grow: 1;
+}
+
+/* Ensure mobile safe padding at bottom for the WhatsApp fixed bar */
+@media (max-width: 767px) {
+  .app-layout {
+    padding-bottom: 64px;
+  }
+}
